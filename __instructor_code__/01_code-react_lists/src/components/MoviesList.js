@@ -9,17 +9,31 @@
     }
  */
 
-import React from 'react'
+import React , {useState} from 'react'
 
 import moviesData from '../movies-data.json'
 
 import MovieCard from './MovieCard'
 
+
 export default function MoviesList(){
+    const [movies, setMovies] = useState(moviesData)
+
+    {/**
+        * To modify state I MUST only use the callback function form useState
+        so if I want to delete sometihng I need to create a helper function that modifies the array before setting the state witht the new value
+    */}
+
+    function deleteMovie(movieId){
+        const updatedMoviesArray = movies.filter(movie => movie._id !== movieId)
+        setMovies(updatedMoviesArray)
+    }
+
+    
     return(
-        moviesData.map((movie, idx)=>{
+        movies.map((movie, idx)=>{
             return(
-                <MovieCard movie={movie} id={idx}/>
+                <MovieCard key={idx} movie={movie} handleDelete={deleteMovie}/>
             )
         })
     )
