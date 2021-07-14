@@ -21,7 +21,8 @@ export default function MoviesList(){
 
     {/**
         * To modify state I MUST only use the callback function form useState
-        so if I want to delete sometihng I need to create a helper function that modifies the array before setting the state witht the new value
+        so if I want to delete sometihng I need to create a helper function
+        that modifies the array before setting the state witht the updated value
     */}
 
     function deleteMovie(movieId){

@@ -2,7 +2,16 @@ import React from 'react'
 
 
 export default function MovieCard(props){
-    const { handleDelete, movie:{_id, title, director, IMDBRating}} = props
+    const {
+        handleDelete,
+        movie: {
+            _id,
+            title,
+            director,
+            IMDBRating
+        }
+    } = props
+    
     return(
         <div className="MovieCard" >
             <h3>{title}</h3>
