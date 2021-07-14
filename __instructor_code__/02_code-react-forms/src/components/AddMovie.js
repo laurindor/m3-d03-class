@@ -2,14 +2,14 @@ import React, { useState } from "react";
 
 function AddMovie(props) {
   
-  const [formState, setFormState] = useState(
-    {
-      title: 'Hello Pizza Bytes',
-      director: 'Pizza Bytes Team',
-      IMDBRating: 0,
-      hasOscars: true
-    }
-  )
+  const initialState =   {
+    title: 'Hello Pizza Bytes',
+    director: 'Pizza Bytes Team',
+    IMDBRating: 0,
+    hasOscars: true
+  }
+
+  const [formState, setFormState] = useState( initialState )
 
 
   function handleChange(event){
@@ -24,6 +24,7 @@ function AddMovie(props) {
     event.preventDefault();
     console.log(formState)
     props.addMovieHandler(formState)
+    setFormState( initialState )
   }
 
   return (
