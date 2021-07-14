@@ -2,19 +2,28 @@ import React, { useState } from "react";
 
 function AddMovie(props) {
   
-  const [movieTitle, setMovieTitle] = useState('Hello Pizza Bytes')
+  const [formState, setFormState] = useState(
+    {
+      title: 'Hello Pizza Bytes',
+      director: 'Pizza Bytes Team',
+      IMDBRating: 0,
+      hasOscars: true
+    }
+  )
 
 
-  function handleTitleChange(event){
-    setMovieTitle(event.target.value)
-    console.log(event.target.value)
+  function handleChange(event){
+    setFormState( { ...formState, [event.target.name]: event.target.value } )
+  }
+
+  function handleCheckBoxChange (event) {
+    setFormState({ ...formState, hasOscars: event.target.checked})
   }
 
   function handleOnSubmit(event){
     event.preventDefault();
-    const newMovie = {title: movieTitle}
-    console.log(newMovie)
-    props.addMovieHandler(newMovie)
+    console.log(formState)
+    props.addMovieHandler(formState)
   }
 
   return (
@@ -22,16 +31,16 @@ function AddMovie(props) {
       <h4>Add a Movie</h4>
       <form onSubmit={handleOnSubmit} >
         <label>Title:</label>
-        <input type="text" name="title" value={movieTitle} onChange={handleTitleChange} />
+        <input type="text" name="title" value={formState.title} onChange={handleChange} />
 
         <label>Director:</label>
-        <input type="text" name="director" />
+        <input type="text" name="director" value={formState.director} onChange={handleChange} />
 
         <label>IMDB Rating:</label>
-        <input type="number" name="IMDBRating" />
+        <input type="number" name="IMDBRating" value={formState.IMDBRating} onChange={handleChange} />
 
         <label>Won Oscars:</label>
-        <input type="checkbox" name="hasOscars" />
+        <input type="checkbox" name="hasOscars" checked={formState.hasOscars} onChange={handleCheckBoxChange} />
         <button type="submit">Add a Movie</button>
       </form>
     </div>
